@@ -141,7 +141,9 @@ app.use(
                 "https://fastly.picsum.photos/",
                 "https://picsum.photos/",
                 "https://images.unsplash.com/",
-                "https://api.maptiler.com/"
+                "https://api.maptiler.com/",
+                "https://japandeluxetours.com/",
+                "https://images.locationscout.net/"
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
