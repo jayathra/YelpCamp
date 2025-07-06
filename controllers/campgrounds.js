@@ -32,6 +32,10 @@ module.exports.createCampground = async (req, res) => {
     campground.geometry = geoData.features[0].geometry;
     campground.images = req.files.map(f => ({ url: f.path, filename: f.filename}));
     campground.author = req.user._id;
+    if (!req.files || req.files.length === 0) {
+        req.flash('error', 'You must upload at least one image.');
+        return res.redirect('/campgrounds/new');
+    }
     await campground.save();
     req.flash('success', 'Successfully made a new campground!');
     res.redirect(`/campgrounds/${campground._id}`)

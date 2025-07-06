@@ -20,7 +20,9 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp' // process.env.DB_URL; // 'mongodb://localhost:27017/yelp-camp'
+
+// const dbUrl = 'mongodb://localhost:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'; // process.env.DB_URL; // 'mongodb://localhost:27017/yelp-camp'
 
 const userRoutes = require('./routes/users.js')
 const campgroundRoutes = require('./routes/campgrounds');
@@ -143,7 +145,8 @@ app.use(
                 "https://images.unsplash.com/",
                 "https://api.maptiler.com/",
                 "https://japandeluxetours.com/",
-                "https://images.locationscout.net/"
+                "https://images.locationscout.net/",
+                "https://iskconeducationalservices.org/"
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
