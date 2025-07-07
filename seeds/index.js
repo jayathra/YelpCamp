@@ -3,7 +3,13 @@ const cities = require('./cities');
 const {descriptors, places} = require('./seedHelpers');
 const Campground = require('../models/campground');
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp')
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config()
+}
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'; // process.env.DB_URL; // 'mongodb://localhost:27017/yelp-camp'
+
+mongoose.connect(dbUrl)
   .then(() => {
     console.log("MongoDB connection open ✅");
   })
@@ -34,7 +40,7 @@ const seedDB = async () => {
         });
       }
       const camp = new Campground ({
-        author: '6865547b1fad3cfa78b5d3f5',
+        author: '686ab8cc0f8b8744759480ce',
         location: `${cities[random1000].city}, ${cities[random1000].state}`,
         title: `${sample(descriptors)} ${sample(places)}`,
         images, // <-- now an array of images

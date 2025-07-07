@@ -52,7 +52,9 @@ module.exports.showCampground = async (req, res) => {
         req.flash('error', 'Cannot find campground!');
         return res.redirect('/campgrounds')
     }
-    res.render('campgrounds/show', { campground })
+    const reviewFormData = req.session.formData || null;
+    delete req.session.formData;
+    res.render('campgrounds/show', { campground, reviewFormData })
 }
 
 module.exports.renderEditForm = async (req, res) => {
