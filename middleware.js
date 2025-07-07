@@ -53,6 +53,7 @@ module.exports.validateReview = (req, res, next) => {
   const { id } = req.params;
   const { error } = reviewSchema.validate(req.body);
   if (error) {
+    req.session.formData = req.body.review;
     const msg = error.details.map(el => el.message).join(',');
     req.flash('error', msg);
     return res.redirect(`/campgrounds/${id}`);
